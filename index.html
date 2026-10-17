@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1b4332">
+<title>FasoAgri-Logistique - Enregistrement Récolte</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <div class="logo">🌾 FasoAgri-Logistique</div>
+    <div class="badge-pro">SUPPLY CHAIN B2B</div>
+  </header>
+
+  <div id="successAlert" class="alert-success" style="display:none;">
+    ✅ Récolte enregistrée avec succès dans la base MySQL !
+  </div>
+
+  <section>
+    <h2>📦 Enregistrement d'une Récolte en Temps Réel</h2>
+    <p style="font-size:0.85rem;color:var(--mute);margin-top:0;">Espace réservé aux coopératives agricoles (Banfora, Dédougou, etc.).</p>
+    
+    <form action="enregistrer.php" method="POST">
+      <div class="form-group">
+        <label for="cooperative_id">ID de la Coopérative</label>
+        <input type="number" id="cooperative_id" name="cooperative_id" placeholder="Ex: 1" required>
+      </div>
+
+      <div class="form-group">
+        <label for="produit">Type de Produit Agricole</label>
+        <select id="produit" name="produit" required>
+          <option value="">Sélectionner un produit</option>
+          <option value="Mangues Fraîches">Mangues Fraîches</option>
+          <option value="Oignons">Oignons</option>
+          <option value="Maïs Blanc/Jaune">Maïs Blanc/Jaune</option>
+          <option value="Sorgho">Sorgho</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="quantite_kg">Quantité (en Kg)</label>
+        <input type="number" step="0.01" id="quantite_kg" name="quantite_kg" placeholder="Ex: 1500" required>
+      </div>
+
+      <div class="form-group">
+        <label for="date_recolte">Date de Récolte</label>
+        <input type="date" id="date_recolte" name="date_recolte" required>
+      </div>
+
+      <button type="submit" class="go">Enregistrer la récolte</button>
+    </form>
+    
+    <div style="margin-top:20px; text-align:center;">
+      <a href="dashboard.php" style="color:var(--accent); text-decoration:none; font-weight:600; font-size:0.9rem;">📊 Voir le tableau de bord et les prévisions &rarr;</a>
+    </div>
+  </section>
+</main>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('success')) {
+    document.getElementById('successAlert').style.display = 'block';
+  }
+</script>
+</body>
+</html>
